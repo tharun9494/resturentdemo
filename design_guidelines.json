@@ -1,0 +1,101 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Jewel & Luxury)",
+  "vibe": "Cinematic, opulence, immersive 3D, fine-dining mysticism. Merges culinary art with cutting-edge tech (AI) in a dark, moody environment.",
+  "colors": {
+    "background": {
+      "base": "#050505",
+      "surface": "#0a0a0a",
+      "surface_elevated": "#141414"
+    },
+    "text": {
+      "primary": "#F7F7F7",
+      "secondary": "#A1A1AA",
+      "accent": "#D4AF37"
+    },
+    "brand": {
+      "primary": "#D4AF37",
+      "primary_hover": "#E5C865",
+      "accent": "#B8860B",
+      "muted": "#2A2A2A"
+    },
+    "gradients": {
+      "glow": "radial-gradient(circle at center, rgba(212,175,55,0.15) 0%, rgba(5,5,5,0) 70%)",
+      "overlay": "linear-gradient(to bottom, rgba(5,5,5,0) 0%, rgba(5,5,5,1) 100%)"
+    },
+    "rules": [
+      "No pure whites except for primary text. No generic grays; always tint with warmth.",
+      "Use #D4AF37 (Molten Gold) strictly as a highlight color (CTAs, active states, key icons).",
+      "Surfaces must rely on 1px borders (border-white/5 or border-[#D4AF37]/20) and glassmorphism rather than heavy drop shadows."
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Cormorant Garamond, serif",
+      "body": "Outfit, sans-serif",
+      "accent": "JetBrains Mono, monospace"
+    },
+    "rules": [
+      "Headings: Cormorant Garamond, tracking-tight, font-light or font-medium. Use lowercase for poetic subheadings.",
+      "Body: Outfit, tracking-normal, font-light, text-secondary.",
+      "Labels/Overlines: JetBrains Mono, uppercase, tracking-[0.2em], text-[10px] or text-xs, text-brand-primary.",
+      "Max Heading Size: text-6xl for hero, text-4xl/5xl for section headers."
+    ]
+  },
+  "spacing_and_layout": {
+    "grid": "Use Mode A (The 'Tetris' Grid) for galleries and menu highlights. High asymmetry. Wide gaps (gap-8 to gap-16).",
+    "spacing_scale": "Generous. Use py-24 to py-32 for section padding. Components should have ample breathing room.",
+    "alignment": "Offset alignments. Do not center everything. Stagger images and text blocks.",
+    "hero": "Full-bleed (100vh). Must include heavy overlay (bg-black/60) over any background imagery to preserve text contrast."
+  },
+  "surfaces_and_fx": {
+    "glassmorphism": "Used for sticky header, AI chatbot modal, and reservation form. `backdrop-blur-2xl bg-black/40 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]`",
+    "tracing_beam": "Apply subtle glowing gradient borders to signature dish cards on hover.",
+    "hover_states": "Images scale gently (scale-105). Text shifts to primary color. Buttons get a soft gold drop-shadow.",
+    "animations": "Framer Motion for scroll reveals (y: 30, opacity: 0 -> 1, duration 0.8s, ease: 'easeOut'). Staggered lists for menu items."
+  },
+  "components": {
+    "header": "Sticky nav, glassmorphism. Logo centered, links flanking. 'Reserve' CTA button (solid gold bg, black text).",
+    "hero": "Cinematic text reveal. Background features abstract 3D gold particles or slow-moving video-like texture. Scroll indicator (mouse or arrow down).",
+    "menu_gallery": "Bento grid or asymmetrical list. Hovering over menu item reveals image via tooltip/floating image (Framer Motion) or cross-fades.",
+    "reservation_form": "Shadcn Form, highly customized. Dark inputs (`bg-black/50`, `border-white/20`, focus:`border-[#D4AF37]`). Include DatePicker and Select (time/guests).",
+    "ai_chatbot": "Fixed bottom-right FAB. Opens a chat interface (Shadcn Dialog/Card). 'Speak to the Executive Chef AI'. Neon/gold glowing avatar.",
+    "testimonials": "Use `react-fast-marquee`. Large, elegant serif text drifting slowly horizontally."
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1703100837481-d2f2cdb1d85e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MjJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdvbGQlMjBkYXJrJTIwcGFydGljbGVzJTIwM2R8ZW58MHx8fHwxNzc4NTYzMjI5fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract 3D gold particles. Use as a full-screen background with a heavy black overlay (bg-black/60) for the hero section."
+    },
+    "gallery_ambience_1": {
+      "url": "https://images.unsplash.com/photo-1758354465013-847ebb9e5390?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwyfHxmaW5lJTIwZGluaW5nJTIwbHV4dXJ5JTIwcmVzdGF1cmFudCUyMGludGVyaW9yJTIwZGFya3xlbnwwfHx8fDE3Nzg1NjMyMDh8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Ornate, dark luxury restaurant interior."
+    },
+    "chef_portrait": {
+      "url": "https://images.unsplash.com/photo-1634136928334-98db4d5fc9e8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwxfHxtaWNoZWxpbiUyMHN0YXIlMjBjaGVmJTIwcG9ydHJhaXQlMjBkYXJrJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Nzg1NjMyMDh8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Chef portrait in dark background. Use for the 'Chef's Story' section."
+    },
+    "signature_dish_1": {
+      "url": "https://images.unsplash.com/photo-1755811248279-1ab13b7d4384?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzB8MHwxfHNlYXJjaHwxfHxnb3VybWV0JTIwZm9vZCUyMHBsYXRpbmd8ZW58MHx8fHwxNzc4NTYzMjA4fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Gourmet steak dinner on dark plate."
+    },
+    "signature_dish_2": {
+      "url": "https://images.pexels.com/photos/34712610/pexels-photo-34712610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Luxurious chocolate dessert on dark wood, high contrast."
+    },
+    "signature_dish_3": {
+      "url": "https://images.pexels.com/photos/32525175/pexels-photo-32525175.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Elegant display of gourmet dishes artfully arranged."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install Framer Motion (`yarn add framer-motion`) and React Fast Marquee (`yarn add react-fast-marquee`).",
+    "Install lucide-react (if not present) for elegant, simple icons.",
+    "Theme is exclusively dark mode. Remove standard Vercel/Shadcn boilerplate colors and implement the deep black/gold palette specified.",
+    "In the Hero section, implement the `hero_background` image with a parallax effect using Framer Motion (or simple CSS `background-attachment: fixed`), and add an overlay so the gold text pops.",
+    "Implement the 'AI Chef Recommendation Chatbot' as a fixed widget in the bottom right corner. Make it look like a high-end command interface, not a standard support bubble.",
+    "Ensure all interactive elements have `data-testid` attributes.",
+    "Use standard Tailwind utilities; do not over-rely on Shadcn for structural layouts (use raw flex/grid). Only use Shadcn for complex logic (Forms, Select, Dialog for the Chatbot).",
+    "For the Menu section, use an asymmetrical bento grid displaying the `signature_dish` images."
+  ]
+}
