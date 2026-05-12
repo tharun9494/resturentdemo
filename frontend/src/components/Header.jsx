@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-export const Header = ({ onReserve, onOpenChat }) => {
+export const Header = ({ onReserve }) => {
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
@@ -32,12 +32,12 @@ export const Header = ({ onReserve, onOpenChat }) => {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group" data-testid="logo-link">
-          <div className="w-9 h-9 border border-[#D4AF37]/60 rotate-45 flex items-center justify-center group-hover:rotate-[225deg] transition-transform duration-700">
-            <span className="-rotate-45 group-hover:rotate-[-225deg] transition-transform duration-700 font-serif-display text-[#D4AF37] text-lg">N</span>
+          <div className="w-9 h-9 border border-[#E6C998]/60 rotate-45 flex items-center justify-center group-hover:rotate-[225deg] transition-transform duration-700">
+            <span className="-rotate-45 group-hover:rotate-[-225deg] transition-transform duration-700 font-serif-display text-[#E6C998] text-lg">N</span>
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-serif-display text-xl tracking-wide">Noir & Or</span>
-            <span className="font-mono-accent text-[9px] uppercase tracking-[0.3em] text-[#D4AF37]/70 mt-1">est. mmxxv</span>
+            <span className="font-mono-accent text-[9px] uppercase tracking-[0.3em] text-[#E6C998]/70 mt-1">est. mmxxv</span>
           </div>
         </a>
 
@@ -57,15 +57,8 @@ export const Header = ({ onReserve, onOpenChat }) => {
 
         <div className="hidden md:flex items-center gap-3">
           <button
-            onClick={onOpenChat}
-            className="font-mono-accent text-[10px] uppercase tracking-[0.28em] text-zinc-400 hover:text-[#D4AF37] transition-colors px-3 py-2"
-            data-testid="header-ai-btn"
-          >
-            ask the chef
-          </button>
-          <button
             onClick={onReserve}
-            className="group relative overflow-hidden bg-[#D4AF37] text-black px-6 py-3 font-mono-accent text-[11px] uppercase tracking-[0.28em] hover:bg-[#E5C865] transition-colors"
+            className="group relative overflow-hidden bg-[#E6C998] text-black px-6 py-3 font-mono-accent text-[11px] uppercase tracking-[0.28em] hover:bg-[#F4E2AA] transition-colors"
             data-testid="header-reserve-btn"
           >
             <span className="relative z-10">Reserve a Table</span>
@@ -99,7 +92,7 @@ export const Header = ({ onReserve, onOpenChat }) => {
             ))}
             <button
               onClick={() => { setOpen(false); onReserve(); }}
-              className="mt-4 bg-[#D4AF37] text-black px-6 py-3 font-mono-accent text-[11px] uppercase tracking-[0.28em]"
+              className="mt-4 bg-[#E6C998] text-black px-6 py-3 font-mono-accent text-[11px] uppercase tracking-[0.28em]"
               data-testid="mobile-reserve-btn"
             >
               Reserve a Table

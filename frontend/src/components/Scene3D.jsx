@@ -28,23 +28,23 @@ const GoldOrb = () => {
         <mesh ref={mesh}>
           <icosahedronGeometry args={[1.6, 16]} />
           <MeshDistortMaterial
-            color="#D4AF37"
+            color="#E6C998"
             roughness={0.15}
             metalness={1}
             distort={0.32}
             speed={1.4}
-            emissive="#8E6F1E"
+            emissive="#B89658"
             emissiveIntensity={0.4}
           />
         </mesh>
       </Float>
       <mesh ref={ring}>
         <torusGeometry args={[2.4, 0.012, 16, 200]} />
-        <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={1} />
+        <meshStandardMaterial color="#E6C998" emissive="#E6C998" emissiveIntensity={1} />
       </mesh>
       <mesh rotation={[Math.PI / 2.3, 0, 0]}>
         <torusGeometry args={[2.7, 0.008, 16, 200]} />
-        <meshStandardMaterial color="#D4AF37" emissive="#D4AF37" emissiveIntensity={0.6} opacity={0.6} transparent />
+        <meshStandardMaterial color="#E6C998" emissive="#E6C998" emissiveIntensity={0.6} opacity={0.6} transparent />
       </mesh>
     </group>
   );
@@ -59,9 +59,9 @@ export const Scene3D = () => {
       data-testid="scene-3d-canvas"
     >
       <ambientLight intensity={0.15} />
-      <pointLight position={[5, 5, 5]} intensity={1.4} color="#FFE9A8" />
-      <pointLight position={[-5, -3, -5]} intensity={0.8} color="#D4AF37" />
-      <spotLight position={[0, 10, 0]} intensity={0.6} angle={0.4} penumbra={1} color="#D4AF37" />
+      <pointLight position={[5, 5, 5]} intensity={1.4} color="#FFFFFF" />
+      <pointLight position={[-5, -3, -5]} intensity={0.8} color="#E6C998" />
+      <spotLight position={[0, 10, 0]} intensity={0.6} angle={0.4} penumbra={1} color="#E6C998" />
       <Suspense fallback={null}>
         <GoldOrb />
         <Environment preset="night" />

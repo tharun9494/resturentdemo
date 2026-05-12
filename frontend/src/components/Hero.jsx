@@ -15,37 +15,38 @@ export const Hero = ({ onReserve }) => {
       className="relative min-h-screen w-full overflow-hidden bg-black"
       data-testid="hero-section"
     >
-      {/* Background image with overlay */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 z-0"
-      >
-        <img
-          src="https://images.unsplash.com/photo-1703100837481-d2f2cdb1d85e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MjJ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGdvbGQlMjBkYXJrJTIwcGFydGljbGVzJTIwM2R8ZW58MHx8fHwxNzc4NTYzMjI5fDA&ixlib=rb-4.1.0&q=85"
-          alt="Abstract gold particles"
-          className="w-full h-full object-cover scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12)_0%,rgba(5,5,5,0)_55%)]" />
-      </motion.div>
+      {/* Clean background */}
+      <div className="absolute inset-0 z-0 bg-black" />
 
       {/* Particles overlay */}
-      <ParticleCanvas density={90} />
+      <ParticleCanvas density={120} />
 
-      {/* Side label - vertical */}
-      <div className="absolute left-6 lg:left-12 top-1/2 -translate-y-1/2 z-10 hidden lg:flex flex-col items-center gap-6">
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-[#D4AF37]/60 to-transparent" />
-        <span className="vertical-rl font-mono-accent text-[10px] uppercase tracking-[0.4em] text-[#D4AF37]/70">
-          tasting № 07 / winter
-        </span>
-        <div className="w-px h-24 bg-gradient-to-b from-[#D4AF37]/60 via-transparent to-transparent" />
-      </div>
+      {/* Circular Text Badge */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute right-12 lg:right-32 top-1/2 -translate-y-1/2 z-20 pointer-events-none hidden md:flex items-center justify-center w-48 h-48 lg:w-64 lg:h-64 opacity-60"
+      >
+        <motion.div 
+          animate={{ rotate: 360 }} 
+          transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+          className="w-full h-full relative"
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+            <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+            <text>
+              <textPath href="#circlePath" startOffset="0%" className="text-[10px] font-mono-accent tracking-[0.25em] fill-[#E6C998] uppercase">
+                • fine dining • tasting menu • noir & or
+              </textPath>
+            </text>
+          </svg>
+        </motion.div>
+        {/* Center dot */}
+        <div className="absolute w-2 h-2 bg-[#E6C998] rounded-full" />
+      </motion.div>
 
-      {/* Right label */}
-      <div className="absolute right-6 lg:right-12 top-1/2 -translate-y-1/2 z-10 hidden lg:flex flex-col items-end gap-3">
-        <span className="font-mono-accent text-[10px] uppercase tracking-[0.3em] text-zinc-500">latitude 40.7128°</span>
-        <span className="font-mono-accent text-[10px] uppercase tracking-[0.3em] text-zinc-500">longitude 74.0060°</span>
-      </div>
+      {/* Labels removed for minimalist "empty" feel */}
 
       {/* Hero content */}
       <motion.div
@@ -53,13 +54,13 @@ export const Hero = ({ onReserve }) => {
         className="relative z-10 min-h-screen flex flex-col justify-center px-6 lg:px-24 max-w-[1400px] mx-auto"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex items-center gap-4 mb-8"
         >
-          <div className="w-12 h-px bg-[#D4AF37]" />
-          <span className="font-mono-accent text-[10px] uppercase tracking-[0.4em] text-[#D4AF37]">
+          <div className="w-12 h-px bg-[#E6C998]" />
+          <span className="font-mono-accent text-[10px] uppercase tracking-[0.4em] text-[#E6C998]">
             a fine dining experience
           </span>
         </motion.div>
@@ -80,14 +81,21 @@ export const Hero = ({ onReserve }) => {
             </motion.span>
           ))}
           <br />
-          <motion.span
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.2 }}
-            className="inline-block italic text-gold-gradient text-6xl md:text-8xl lg:text-9xl font-serif-display"
-          >
-            quiet revelation.
-          </motion.span>
+          <br />
+          <div className="inline-block mt-4">
+            {"quiet revelation.".split("").map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ duration: 1, delay: 1.2 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block italic text-gold-gradient text-6xl md:text-8xl lg:text-9xl font-serif-display"
+                style={{ transformOrigin: "bottom" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </div>
         </h1>
 
         <motion.p
@@ -108,14 +116,14 @@ export const Hero = ({ onReserve }) => {
         >
           <button
             onClick={onReserve}
-            className="group relative bg-[#D4AF37] text-black px-8 py-4 font-mono-accent text-[11px] uppercase tracking-[0.3em] hover:bg-[#E5C865] transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+            className="group relative border border-[#E6C998] text-[#E6C998] px-8 py-4 font-mono-accent text-[11px] uppercase tracking-[0.3em] hover:bg-[#E6C998] hover:text-black transition-all hover:shadow-[0_0_20px_rgba(230,201,152,0.2)]"
             data-testid="hero-reserve-btn"
           >
             secure your seat →
           </button>
           <a
             href="#menu"
-            className="font-mono-accent text-[11px] uppercase tracking-[0.3em] text-zinc-300 hover:text-[#D4AF37] transition-colors flex items-center gap-2"
+            className="font-mono-accent text-[11px] uppercase tracking-[0.3em] text-zinc-400 hover:text-[#E6C998] transition-colors flex items-center gap-2"
             data-testid="hero-menu-link"
           >
             <span className="w-8 h-px bg-current" /> view the tasting menu
@@ -137,12 +145,12 @@ export const Hero = ({ onReserve }) => {
             { n: "98", l: "James Beard Score" },
           ].map((b, i) => (
             <div key={i} className="flex flex-col gap-1">
-              <span className="font-serif-display text-2xl text-[#D4AF37]">{b.n}</span>
+              <span className="font-serif-display text-2xl text-[#E6C998]">{b.n}</span>
               <span className="font-mono-accent text-[9px] uppercase tracking-[0.3em] text-zinc-500">{b.l}</span>
             </div>
           ))}
         </div>
-        <a href="#story" className="flex flex-col items-center gap-2 text-zinc-500 hover:text-[#D4AF37] transition-colors group" data-testid="scroll-indicator">
+        <a href="#story" className="flex flex-col items-center gap-2 text-zinc-500 hover:text-[#E6C998] transition-colors group" data-testid="scroll-indicator">
           <span className="font-mono-accent text-[9px] uppercase tracking-[0.3em]">scroll</span>
           <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
         </a>

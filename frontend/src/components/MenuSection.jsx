@@ -34,9 +34,9 @@ export const MenuSection = () => {
           className="mb-20 text-center max-w-3xl mx-auto"
         >
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-12 h-px bg-[#D4AF37]/40" />
-            <span className="font-mono-accent text-[10px] uppercase tracking-[0.4em] text-[#D4AF37]">chapter iii</span>
-            <div className="w-12 h-px bg-[#D4AF37]/40" />
+            <div className="w-12 h-px bg-[#E6C998]/40" />
+            <span className="font-mono-accent text-[10px] uppercase tracking-[0.4em] text-[#E6C998]">chapter iii</span>
+            <div className="w-12 h-px bg-[#E6C998]/40" />
           </div>
           <h2 className="font-serif-display text-4xl md:text-5xl lg:text-6xl font-light leading-[1.05]">
             the winter <span className="italic text-gold-gradient">tasting</span>
@@ -53,7 +53,7 @@ export const MenuSection = () => {
               key={c.id}
               onClick={() => setActive(c.id)}
               className={`group px-6 py-3 transition-all relative ${
-                active === c.id ? "text-[#D4AF37]" : "text-zinc-500 hover:text-white"
+                active === c.id ? "text-[#E6C998]" : "text-zinc-500 hover:text-white"
               }`}
               data-testid={`course-tab-${c.id}`}
             >
@@ -64,7 +64,7 @@ export const MenuSection = () => {
               {active === c.id && (
                 <motion.div
                   layoutId="activeCourse"
-                  className="absolute bottom-0 left-0 right-0 h-px bg-[#D4AF37]"
+                  className="absolute bottom-0 left-0 right-0 h-px bg-[#E6C998]"
                 />
               )}
             </button>
@@ -92,22 +92,22 @@ export const MenuSection = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="group grid grid-cols-12 gap-6 py-8 hover:bg-white/[0.02] px-4 lg:px-6 transition-colors"
+                  className="group grid grid-cols-12 gap-6 py-8 hover:bg-white/[0.04] px-4 lg:px-6 transition-all duration-700 ease-out rounded-lg hover:scale-[1.01]"
                   data-testid={`menu-item-${i}`}
                 >
-                  <div className="col-span-1 font-mono-accent text-[10px] text-[#D4AF37] pt-2">
+                  <div className="col-span-1 font-mono-accent text-[10px] text-[#E6C998] pt-2">
                     {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="col-span-12 sm:col-span-8 lg:col-span-9">
-                    <h3 className="font-serif-display text-2xl lg:text-3xl text-white group-hover:text-[#D4AF37] transition-colors">
+                  <div className="col-span-12 sm:col-span-8 lg:col-span-9 transform group-hover:translate-x-3 transition-transform duration-700 ease-out">
+                    <h3 className="font-serif-display text-2xl lg:text-3xl text-white group-hover:text-[#E6C998] transition-colors duration-500">
                       {it.name}
                     </h3>
-                    <p className="font-mono-accent text-[10px] uppercase tracking-[0.25em] text-zinc-500 mt-2">
+                    <p className="font-mono-accent text-[10px] uppercase tracking-[0.25em] text-zinc-500 mt-2 group-hover:text-zinc-400 transition-colors duration-500">
                       {it.notes}
                     </p>
                   </div>
                   <div className="col-span-12 sm:col-span-3 lg:col-span-2 flex sm:justify-end items-start pt-2">
-                    <span className="font-serif-display text-xl text-[#D4AF37]">${it.price}</span>
+                    <span className="font-serif-display text-xl text-[#E6C998] group-hover:scale-105 transition-transform duration-700">${it.price}</span>
                   </div>
                 </motion.div>
               ))}
