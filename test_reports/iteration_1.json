@@ -1,0 +1,40 @@
+{
+  "summary": "End-to-end testing of Noir & Or fine-dining MVP. All 6 backend pytest tests pass (root, menu structure, reservation create+list, reservation validation, newsletter idempotent upsert, chef AI multi-turn chat with history). All frontend flows verified on desktop and mobile via Playwright: home page loads with hero 'quiet revelation' text, gold particle canvas renders, reservation modal opens from header and submits successfully showing success screen, all four course tabs (prelude/earth/fire/finale) switch correctly, AI chef chat returns in-character reply, newsletter shows success toast, mobile menu opens with nav links and reserve button.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/reservations", "issue": "No server-side validation that the booking date is in the future; past dates are accepted."},
+      {"endpoint": "/api/newsletter", "issue": "Email field uses plain str (not EmailStr) so invalid email formats are accepted."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_noir_or_api.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Optional, low priority) Add server-side check rejecting reservation date < today.",
+    "(Optional, low priority) Switch NewsletterSignup.email to Pydantic EmailStr for format validation."
+  ],
+  "critical_code_review_comments": [
+    "Backend chef_chat redundantly rehydrates history into the prompt while also passing session_id to LlmChat — works correctly but doubles context cost; one mechanism is sufficient.",
+    "ReservationModal closes whenever the user clicks the dark backdrop (onClick={reset}) — also resets all form fields without confirmation, which can frustrate guests who accidentally click outside while filling the form.",
+    "MenuSection silently swallows fetch errors with .catch(() => {}); should surface a fallback UI/toast if /api/menu fails.",
+    "No loading state on MenuSection while items are empty — section briefly renders without any dishes on first paint."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_noir_or_api.py (new)",
+    "/app/backend/tests/__init__.py (new)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "none required",
+  "seed_data_creation": "Test data created with TEST_ prefix (reservations, newsletter emails) in MongoDB; not cleaned up but isolated by prefix.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend tests live at /app/backend/tests/test_noir_or_api.py and exercise all 6 endpoints including the EMERGENT_LLM_KEY-backed /api/chef/chat multi-turn flow (takes ~6-10s). Frontend reservation modal closes on backdrop click and resets the form — keep that in mind when writing Playwright tests (don't click outside the modal). MenuSection uses AnimatePresence mode='wait' with a 0.6s exit duration — wait at least 1.2s after clicking a course-tab-* before asserting new menu-item-0 content, otherwise the previous course is still rendered.",
+  "rca of the issue": "n/a — no bugs blocking the listed acceptance criteria. Initial Playwright run reported 'fire' tab showing 'Truffled Risotto Nero' (an earth dish); RCA: AnimatePresence mode='wait' keeps the outgoing course mounted for the 0.6s exit transition, so a 600ms post-click wait read stale DOM. Mitigation: assertions now wait 1.5s; with that wait all four tabs render the correct dishes."
+}

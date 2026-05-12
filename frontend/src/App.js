@@ -1,38 +1,50 @@
-import { useEffect } from "react";
+import React from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { Toaster } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Story from "@/components/Story";
+import Signature from "@/components/Signature";
+import MenuSection from "@/components/MenuSection";
+import Testimonials from "@/components/Testimonials";
+import Footer from "@/components/Footer";
+import ReservationModal from "@/components/ReservationModal";
+import ChefChat, { ChefChatFAB } from "@/components/ChefChat";
 
 const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
+  const [reserveOpen, setReserveOpen] = React.useState(false);
+  const [chatOpen, setChatOpen] = React.useState(false);
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div className="bg-[#050505] text-white min-h-screen grain" data-testid="home-page">
+      <Header onReserve={() => setReserveOpen(true)} onOpenChat={() => setChatOpen(true)} />
+      <main>
+        <Hero onReserve={() => setReserveOpen(true)} />
+        <Story />
+        <Signature onReserve={() => setReserveOpen(true)} />
+        <MenuSection />
+        <Testimonials />
+        <Footer onReserve={() => setReserveOpen(true)} />
+      </main>
+
+      <ReservationModal open={reserveOpen} onClose={() => setReserveOpen(false)} />
+      <ChefChatFAB open={chatOpen} onClick={() => setChatOpen(true)} />
+      <ChefChat open={chatOpen} onClose={() => setChatOpen(false)} />
+
+      <Toaster
+        theme="dark"
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            background: "#0a0a0a",
+            border: "1px solid rgba(212,175,55,0.3)",
+            color: "#F7F7F7",
+            fontFamily: "Outfit, sans-serif",
+          },
+        }}
+      />
     </div>
   );
 };
@@ -42,9 +54,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
